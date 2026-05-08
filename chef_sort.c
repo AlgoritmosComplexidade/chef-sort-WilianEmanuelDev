@@ -54,6 +54,9 @@ void recursiveInsertionSort(Comanda arr[], int n) {
 */
 
 
+#define QTD 6     // Quantidade de ingredientes
+#define TAM 30    // Tamanho máximo de cada string
+
 // ====================================================================
 // FUNÇÃO PRINCIPAL
 // ====================================================================
