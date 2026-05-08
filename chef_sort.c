@@ -57,30 +57,96 @@ void recursiveInsertionSort(Comanda arr[], int n) {
 // ====================================================================
 // FUNÇÃO PRINCIPAL
 // ====================================================================
-
+*/
 int main() {
     printf("=== BEM-VINDO AO CHEF SORT ===\n\n");
 
     // ---------------------------------------------------------
     // ÁREA DO NÍVEL NOVATO (Despensa / Bubble Sort)
     // ---------------------------------------------------------
-    /*
-    char ingredientes[5][50] = {"Tomate", "Cebola", "Alho", "Cenoura", "Batata"};
-    int num_ingredientes = 5;
-    int comparacoes = 0;
-    int trocas = 0;
+    
+   // Vetor bidimensional de strings com os ingredientes
+    char ingredientes[QTD][TAM] = {
+        "Tomate",
+        "Cebola",
+        "Alho",
+        "Manjericao",
+        "Azeite",
+        "Sal"
+    };
+
+    char temp[TAM];     // Variável auxiliar para troca de strings
+    int i, j;
+
+    int comparacoes = 0; // Contador de comparações entre strings
+    int trocas = 0;      // Contador de trocas realizadas
+
 
     printf("--- Nivel Novato: Organizando a Despensa ---\n");
     printf("Lista ANTES da ordenacao:\n");
     // Laco para imprimir ingredientes antes
+    // ----------------------------
+    // Exibição da lista ANTES da ordenação
+    // ----------------------------
+    printf("============================================\n");
+    printf("  LISTA DE INGREDIENTES (ANTES DA ORDENACAO)\n");
+    printf("============================================\n");
 
+    for (i = 0; i < QTD; i++) {
+        printf("- %s\n", ingredientes[i]);
+    }
     // Chamada da funcao bubbleSortStrings(...)
+    // ----------------------------
+    // Algoritmo Bubble Sort
+    // ----------------------------
+    // Percorre o vetor várias vezes empurrando os maiores
+    // elementos (em ordem alfabética) para o final
+    for (i = 0; i < QTD - 1; i++) {
+
+        for (j = 0; j < QTD - 1 - i; j++) {
+
+            // Conta cada comparação realizada
+            comparacoes++;
+
+            // strcmp:
+            // > 0 → primeira string vem depois alfabeticamente
+            // < 0 → primeira string vem antes alfabeticamente
+            // = 0 → strings iguais
+            if (strcmp(ingredientes[j], ingredientes[j + 1]) > 0) {
+
+                // Troca das strings usando uma variável temporária
+                strcpy(temp, ingredientes[j]);
+                strcpy(ingredientes[j], ingredientes[j + 1]);
+                strcpy(ingredientes[j + 1], temp);
+
+                // Conta a troca realizada
+                trocas++;
+            }
+        }
+    }
 
     printf("\nLista DEPOIS da ordenacao:\n");
     // Laco para imprimir ingredientes depois
     // Imprimir totais de comparacoes e trocas
-    */
+    // ----------------------------
+    // Exibição da lista APÓS a ordenação
+    // ----------------------------
+    printf("\n============================================\n");
+    printf("  LISTA DE INGREDIENTES (APOS A ORDENACAO)\n");
+    printf("============================================\n");
 
+    for (i = 0; i < QTD; i++) {
+        printf("- %s\n", ingredientes[i]);
+    }
+
+    // ----------------------------
+    // Exibição das métricas do algoritmo
+    // ----------------------------
+    printf("\n============================================\n");
+    printf("  METRICAS DO BUBBLE SORT\n");
+    printf("============================================\n");
+    printf("Comparacoes realizadas: %d\n", comparacoes);
+    printf("Trocas realizadas:      %d\n", trocas);
 
     // ---------------------------------------------------------
     // ÁREA DO NÍVEL AVENTUREIRO (Pratos / Selection Sort)
