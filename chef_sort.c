@@ -60,7 +60,6 @@ void recursiveInsertionSort(Comanda arr[], int n) {
 // ====================================================================
 // FUNÇÃO PRINCIPAL
 // ====================================================================
-*/
 int main() {
     printf("=== BEM-VINDO AO CHEF SORT ===\n\n");
 
