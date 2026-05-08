@@ -34,9 +34,9 @@ typedef struct {
 // Nível Novato: Bubble Sort para strings
 // Dica: Use strcmp() da biblioteca <string.h> para comparar strings.
 // Dica: Passe ponteiros para contadores de comparações e trocas se quiser alterá-los dentro da função.
-void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
+//void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
     // Sua lógica do Bubble Sort aqui
-}
+//}
 
 // Nível Aventureiro: Selection Sort para array de structs (Prato)
 /*
