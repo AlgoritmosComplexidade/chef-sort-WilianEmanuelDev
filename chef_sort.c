@@ -10,15 +10,6 @@
 // ESTRUTURAS DE DADOS (Para Níveis Aventureiro e Mestre)
 // ====================================================================
 
-// Struct para o Nível Aventureiro
-/*
-typedef struct {
-    char nome[50];
-    int qtd_ingredientes;
-} Prato;
-*/
-
-// Struct para o Nível Mestre
 typedef struct {
     char nome_prato[50];
     int numero_comanda;
@@ -31,25 +22,25 @@ typedef struct {
 // Nível Novato: Bubble Sort para strings
 // Dica: Use strcmp() da biblioteca <string.h> para comparar strings.
 // Dica: Passe ponteiros para contadores de comparações e trocas se quiser alterá-los dentro da função.
+
 void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
-    // Sua lógica do Bubble Sort aqui
-}
+ 
 
 // Nível Aventureiro: Selection Sort para array de structs (Prato)
-/*
+
 void selectionSortPratos(Prato arr[], int n) {
-    // Sua lógica do Selection Sort aqui buscando a menor qtd_ingredientes
-}
-*/
+
 
 // Nível Mestre: Recursive Insertion Sort para array de structs (Comanda)
 // Dica: Lembre-se de definir o "caso base" (n <= 1) para parar a recursão!
+    
 void recursiveInsertionSort(Comanda arr[], int n) {
 
     // Caso base: vetor com 0 ou 1 elemento já está ordenado
     if (n <= 1) {
         return;
     }
+}
 
     // Ordena recursivamente os primeiros n-1 elementos
     recursiveInsertionSort(arr, n - 1);
@@ -187,10 +178,10 @@ int main() {
     int menor;
     Prato tempPrato;
 
-    /*
+    
     printf("\n--- Nivel Aventureiro: Organizando os Pratos ---\n");
     // Imprima antes, chame a funcao selectionSortPratos, imprima depois
-    */
+    
 
     // ----------------------------
     // Impressão ANTES da ordenação
@@ -256,7 +247,7 @@ Comanda comandas[5] = {
     {"Feijoada", 110},
     {"Arroz Branco", 102},
     {"Macarrao", 108}
-};
+}
 
 printf("\n--- Nivel Mestre: Organizando as Comandas ---\n");
 
