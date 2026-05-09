@@ -26,7 +26,6 @@ typedef struct {
 } Comanda;
 */
 
-
 // ====================================================================
 // PROTÓTIPOS DAS FUNÇÕES DE ORDENAÇÃO
 // ====================================================================
@@ -34,9 +33,9 @@ typedef struct {
 // Nível Novato: Bubble Sort para strings
 // Dica: Use strcmp() da biblioteca <string.h> para comparar strings.
 // Dica: Passe ponteiros para contadores de comparações e trocas se quiser alterá-los dentro da função.
-//void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
+void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
     // Sua lógica do Bubble Sort aqui
-//}
+}
 
 // Nível Aventureiro: Selection Sort para array de structs (Prato)
 /*
@@ -53,22 +52,31 @@ void recursiveInsertionSort(Comanda arr[], int n) {
 }
 */
 
-
-#define QTD 6     // Quantidade de ingredientes
-#define TAM 30    // Tamanho máximo de cada string
-
 // ====================================================================
 // FUNÇÃO PRINCIPAL
 // ====================================================================
+
+typedef struct {
+    char nome[40];              // Nome do prato
+    int quantidadeIngredientes; // Quantidade de ingredientes
+} Prato;
+
 int main() {
+
     printf("=== BEM-VINDO AO CHEF SORT ===\n\n");
+
+    #define QTD_INGREDIENTES 6   // Quantidade de ingredientes
+    #define TAM 30               // Tamanho máximo de cada string
+    #define QTD_PRATOS 5
+
+    int i, j;
 
     // ---------------------------------------------------------
     // ÁREA DO NÍVEL NOVATO (Despensa / Bubble Sort)
     // ---------------------------------------------------------
-    
-   // Vetor bidimensional de strings com os ingredientes
-    char ingredientes[QTD][TAM] = {
+
+    // Vetor bidimensional de strings com os ingredientes
+    char ingredientes[QTD_INGREDIENTES][TAM] = {
         "Tomate",
         "Cebola",
         "Alho",
@@ -77,16 +85,13 @@ int main() {
         "Sal"
     };
 
-    char temp[TAM];     // Variável auxiliar para troca de strings
-    int i, j;
-
-    int comparacoes = 0; // Contador de comparações entre strings
-    int trocas = 0;      // Contador de trocas realizadas
-
+    char tempStr[TAM];     // Variável auxiliar para troca de strings
+    int comparacoes = 0;   // Contador de comparações entre strings
+    int trocas = 0;        // Contador de trocas realizadas
 
     printf("--- Nivel Novato: Organizando a Despensa ---\n");
-    printf("Lista ANTES da ordenacao:\n");
-    // Laco para imprimir ingredientes antes
+    //printf("Lista ANTES da ordenacao:\n");
+
     // ----------------------------
     // Exibição da lista ANTES da ordenação
     // ----------------------------
@@ -94,18 +99,18 @@ int main() {
     printf("  LISTA DE INGREDIENTES (ANTES DA ORDENACAO)\n");
     printf("============================================\n");
 
-    for (i = 0; i < QTD; i++) {
+    for (i = 0; i < QTD_INGREDIENTES; i++) {
         printf("- %s\n", ingredientes[i]);
     }
+
     // Chamada da funcao bubbleSortStrings(...)
     // ----------------------------
     // Algoritmo Bubble Sort
     // ----------------------------
     // Percorre o vetor várias vezes empurrando os maiores
     // elementos (em ordem alfabética) para o final
-    for (i = 0; i < QTD - 1; i++) {
-
-        for (j = 0; j < QTD - 1 - i; j++) {
+    for (i = 0; i < QTD_INGREDIENTES - 1; i++) {
+        for (j = 0; j < QTD_INGREDIENTES - 1 - i; j++) {
 
             // Conta cada comparação realizada
             comparacoes++;
@@ -117,9 +122,9 @@ int main() {
             if (strcmp(ingredientes[j], ingredientes[j + 1]) > 0) {
 
                 // Troca das strings usando uma variável temporária
-                strcpy(temp, ingredientes[j]);
+                strcpy(tempStr, ingredientes[j]);
                 strcpy(ingredientes[j], ingredientes[j + 1]);
-                strcpy(ingredientes[j + 1], temp);
+                strcpy(ingredientes[j + 1], tempStr);
 
                 // Conta a troca realizada
                 trocas++;
@@ -127,17 +132,16 @@ int main() {
         }
     }
 
-    printf("\nLista DEPOIS da ordenacao:\n");
-    // Laco para imprimir ingredientes depois
-    // Imprimir totais de comparacoes e trocas
+    //printf("\nLista DEPOIS da ordenacao:\n");
+
     // ----------------------------
     // Exibição da lista APÓS a ordenação
     // ----------------------------
-    printf("\n============================================\n");
+    printf("============================================\n");
     printf("  LISTA DE INGREDIENTES (APOS A ORDENACAO)\n");
     printf("============================================\n");
 
-    for (i = 0; i < QTD; i++) {
+    for (i = 0; i < QTD_INGREDIENTES; i++) {
         printf("- %s\n", ingredientes[i]);
     }
 
@@ -153,13 +157,76 @@ int main() {
     // ---------------------------------------------------------
     // ÁREA DO NÍVEL AVENTUREIRO (Pratos / Selection Sort)
     // ---------------------------------------------------------
-    /*
+
     // Inicialize aqui o seu vetor de Pratos
-    
+    // Vetor fixo de pratos com diferentes complexidades
+    Prato pratos[QTD_PRATOS] = {
+        {"Arroz Branco", 3},
+        {"Feijoada", 10},
+        {"Macarrao Alho e Oleo", 5},
+        {"Omelete", 4},
+        {"Lasanha", 8}
+    };
+
+    int menor;
+    Prato tempPrato;
+
+    /*
     printf("\n--- Nivel Aventureiro: Organizando os Pratos ---\n");
     // Imprima antes, chame a funcao selectionSortPratos, imprima depois
     */
 
+    // ----------------------------
+    // Impressão ANTES da ordenação
+    // ----------------------------
+    printf("\n============================================\n");
+    printf("  LISTA DE PRATOS (ANTES DA ORDENACAO)\n");
+    printf("============================================\n");
+
+    for (i = 0; i < QTD_PRATOS; i++) {
+        printf("Prato: %-22s | Ingredientes: %d\n",
+               pratos[i].nome,
+               pratos[i].quantidadeIngredientes);
+    }
+
+    // ----------------------------
+    // Algoritmo Selection Sort
+    // ----------------------------
+    // A cada iteração, seleciona o prato com menor
+    // quantidade de ingredientes e o posiciona corretamente
+    for (i = 0; i < QTD_PRATOS - 1; i++) {
+
+        // Assume que o menor elemento está na posição atual
+        menor = i;
+
+        // Procura o menor valor no restante do vetor
+        for (j = i + 1; j < QTD_PRATOS; j++) {
+            if (pratos[j].quantidadeIngredientes <
+                pratos[menor].quantidadeIngredientes) {
+                menor = j;
+            }
+        }
+
+        // Realiza a troca apenas se necessário
+        if (menor != i) {
+            tempPrato = pratos[i];
+            pratos[i] = pratos[menor];
+            pratos[menor] = tempPrato;
+        }
+    }
+
+    // ----------------------------
+    // Impressão APÓS a ordenação
+    // ----------------------------
+    printf("\n============================================\n");
+    printf("  LISTA DE PRATOS (APOS A ORDENACAO)\n");
+    printf("============================================\n");
+
+    for (i = 0; i < QTD_PRATOS; i++) {
+        printf("Prato: %-22s | Ingredientes: %d\n",
+               pratos[i].nome,
+               pratos[i].quantidadeIngredientes);
+    }
 
     // ---------------------------------------------------------
     // ÁREA DO NÍVEL MESTRE (Comandas / Recursive Insertion Sort)
